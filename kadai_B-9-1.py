@@ -2,10 +2,11 @@ import pyxel
 
 pyxel.init(200,200)
 pyxel.mouse(True)
-ballx = 100
+angle = pyxel.rndi(30,150)
+ballx= pyxel.rndi(0,199)
 bally = 0
-vx = 0.866    # cos 60 degree
-vy = 0.5  # sin 60 degree
+vx = pyxel.cos(angle)
+vy = pyxel.sin(angle)
 a= 0
 speed =1.5
 padx = 100
@@ -33,4 +34,3 @@ def draw():
     pyxel.rect(padx-20, 195, 40, 5, 14)
     pyxel.text(10,10,"socre:"+str(a),0)
 pyxel.run(update, draw)
-# パッドを作り、パッド上にボールが落ちたときにスコアが増えるようにしました。
