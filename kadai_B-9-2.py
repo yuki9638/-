@@ -39,3 +39,4 @@ def draw():
     pyxel.rect(padx-20, 195, 40, 5, 14)
     pyxel.text(10,10,"socre:"+str(a),0)
 pyxel.run(update, draw)
+# 音が出るようにしました
