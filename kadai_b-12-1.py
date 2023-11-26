@@ -11,9 +11,13 @@ class Ball :
    self.vx = pyxel.cos(self.angle)
    self.vy = pyxel.sin(self.angle)
   def move(self):
-    for i in range (len(ball)) :
-     ball[i].ballx += ball[i].vx
-     ball[i].bally += ball[i].vy
+    
+     self.ballx += self.vx
+     self.bally += self.vy
+     if self.ballx >=200 :
+        self.vx=-self.vx
+     if self.ballx<=0 :
+        self.vx=-self.vx
 ball =[Ball()]
 class Padx :
   def __init__(self):
@@ -29,17 +33,12 @@ def update():
     global score,angle,error,s,speed
     padx.padx = pyxel.mouse_x
     for i in range (len(ball)) :
-     ball[i].ballx += ball[i].vx
-     ball[i].bally += ball[i].vy
+     ball[i].move()    
      if ball[i].bally >= 196:
         ball[i].ballx = pyxel.rndi(0,199)
         ball[i].bally = 0
         ball[i].vx=ball[i].vx*ball[i].speed
         ball[i].vy=ball[i].vy*ball[i].speed
-     if ball[i].ballx >=200 :
-        ball[i].vx=-ball[i].vx
-     if ball[i].ballx<=0 :
-        ball[i].vx=-ball[i].vx
      if ball[i].bally>=190 and padx.padx-20<=ball[i].ballx<=padx.padx+20 :
         score+=1
         s+=1
@@ -57,6 +56,8 @@ def draw():
     pyxel.cls(7)
     if error>=20 :
        pyxel.text(100,100,"game over!!",0)
+    elif score>=100 :
+       pyxel.text(100,100,"conguraturation",0)
     else :   
      for i in range(len(ball)) :
       pyxel.circ(ball[i].ballx, ball[i].bally, 10, 6)
@@ -64,4 +65,5 @@ def draw():
      pyxel.text(10,10,"socre:"+str(score),0)
      pyxel.text(10,20,"error:"+str(error),0)
 pyxel.run(update, draw)
-# マウスのインスタンスを作りました
+# アップデート関数内にあったボールが跳ね返る処理とボールが動く処理をballメソッド内に移動し、
+# アップデート関数内においてこの処理を呼び出しだしました。
