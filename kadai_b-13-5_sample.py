@@ -88,3 +88,4 @@ class Padx:
 
 app = App()
 pyxel.run(app.update, app.draw)
+# すべてをAppクラスに入れました
