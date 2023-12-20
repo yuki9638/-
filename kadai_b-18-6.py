@@ -82,7 +82,7 @@ class App:
             for bullet in self.bullets:
                 bullet.move()
                 for s in range(len(self.bullets)): 
-                 if self.ball[i].ballx-10<=self.bullets[s].x<=self.ball[i].ballx+10 and self.ball[i].bally-10<=self.bullets[sself.ball[i].restart()].y<=self.ball[i].bally+10 :
+                 if self.ball[i].ballx-10<=self.bullets[s].x<=self.ball[i].ballx+10 and self.ball[i].bally-10<=self.bullets[s].y<=self.ball[i].bally+10 :
                     self.ball[i].restart()
     def draw(self):
         pyxel.cls(7)
